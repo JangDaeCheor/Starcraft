@@ -715,7 +715,7 @@
 									"parentStyle": true,
 									"left": 1512,
 									"top": 400,
-									"width": 78.130859375,
+									"width": 78.56884765625,
 									"height": 13,
 									"text": "OnDestroy",
 									"wordWrap": true
@@ -725,7 +725,7 @@
 							"parentStyle": false,
 							"left": 1512,
 							"top": 392,
-							"width": 78.130859375,
+							"width": 78.56884765625,
 							"height": 25,
 							"nameLabel": {
 								"$ref": "AAAAAAGbJr0HoMHWWUc="
@@ -937,6 +937,185 @@
 							},
 							"lineStyle": 1,
 							"points": "425:1271;495:1297"
+						},
+						{
+							"_type": "MMNodeView",
+							"_id": "AAAAAAGbKfBm9f9Z1e4=",
+							"_parent": {
+								"$ref": "AAAAAAGbJpWBlMC4/qs="
+							},
+							"model": {
+								"$ref": "AAAAAAGbKfBm9P9XKM8="
+							},
+							"subViews": [
+								{
+									"_type": "LabelView",
+									"_id": "AAAAAAGbKfBm9f9aXho=",
+									"_parent": {
+										"$ref": "AAAAAAGbKfBm9f9Z1e4="
+									},
+									"font": "Arial;13;0",
+									"parentStyle": true,
+									"left": 1176,
+									"top": 952,
+									"width": 75.96630859375,
+									"height": 13,
+									"text": "mysql",
+									"wordWrap": true
+								}
+							],
+							"font": "Arial;13;0",
+							"parentStyle": false,
+							"left": 1176,
+							"top": 944,
+							"width": 75.96630859375,
+							"height": 25,
+							"nameLabel": {
+								"$ref": "AAAAAAGbKfBm9f9aXho="
+							}
+						},
+						{
+							"_type": "MMNodeView",
+							"_id": "AAAAAAGbKfB5Pv9i1zw=",
+							"_parent": {
+								"$ref": "AAAAAAGbJpWBlMC4/qs="
+							},
+							"model": {
+								"$ref": "AAAAAAGbKfB5Pv9gnN4="
+							},
+							"subViews": [
+								{
+									"_type": "LabelView",
+									"_id": "AAAAAAGbKfB5Pv9jlgs=",
+									"_parent": {
+										"$ref": "AAAAAAGbKfB5Pv9i1zw="
+									},
+									"font": "Arial;13;0",
+									"parentStyle": true,
+									"left": 1320,
+									"top": 896,
+									"width": 75.96630859375,
+									"height": 26,
+									"text": "apache / xmapp / php",
+									"wordWrap": true
+								}
+							],
+							"font": "Arial;13;0",
+							"parentStyle": false,
+							"left": 1320,
+							"top": 888,
+							"width": 75.96630859375,
+							"height": 38,
+							"nameLabel": {
+								"$ref": "AAAAAAGbKfB5Pv9jlgs="
+							}
+						},
+						{
+							"_type": "MMNodeView",
+							"_id": "AAAAAAGbKfC0uv9rvKE=",
+							"_parent": {
+								"$ref": "AAAAAAGbJpWBlMC4/qs="
+							},
+							"model": {
+								"$ref": "AAAAAAGbKfC0uv9pNkI="
+							},
+							"subViews": [
+								{
+									"_type": "LabelView",
+									"_id": "AAAAAAGbKfC0uv9soV8=",
+									"_parent": {
+										"$ref": "AAAAAAGbKfC0uv9rvKE="
+									},
+									"font": "Arial;13;0",
+									"parentStyle": true,
+									"left": 1320,
+									"top": 1000,
+									"width": 75.96630859375,
+									"height": 13,
+									"text": "node.js",
+									"wordWrap": true
+								}
+							],
+							"font": "Arial;13;0",
+							"parentStyle": false,
+							"left": 1320,
+							"top": 992,
+							"width": 75.96630859375,
+							"height": 25,
+							"nameLabel": {
+								"$ref": "AAAAAAGbKfC0uv9soV8="
+							}
+						},
+						{
+							"_type": "MMEdgeView",
+							"_id": "AAAAAAGbKfDMRf92mCM=",
+							"_parent": {
+								"$ref": "AAAAAAGbJpWBlMC4/qs="
+							},
+							"model": {
+								"$ref": "AAAAAAGbKfDMRf90lxQ="
+							},
+							"font": "Arial;13;0",
+							"parentStyle": false,
+							"head": {
+								"$ref": "AAAAAAGbKfB5Pv9i1zw="
+							},
+							"tail": {
+								"$ref": "AAAAAAGbKfBm9f9Z1e4="
+							},
+							"lineStyle": 1,
+							"points": "1251:943;1319:920"
+						},
+						{
+							"_type": "MMEdgeView",
+							"_id": "AAAAAAGbKfDUXP9718Y=",
+							"_parent": {
+								"$ref": "AAAAAAGbJpWBlMC4/qs="
+							},
+							"model": {
+								"$ref": "AAAAAAGbKfDUXP95YHY="
+							},
+							"font": "Arial;13;0",
+							"parentStyle": false,
+							"head": {
+								"$ref": "AAAAAAGbKfC0uv9rvKE="
+							},
+							"tail": {
+								"$ref": "AAAAAAGbKfBm9f9Z1e4="
+							},
+							"lineStyle": 1,
+							"points": "1253:969;1319:991"
+						},
+						{
+							"_type": "UMLNoteView",
+							"_id": "AAAAAAGbKfDe9P9+riI=",
+							"_parent": {
+								"$ref": "AAAAAAGbJpWBlMC4/qs="
+							},
+							"font": "Arial;13;0",
+							"parentStyle": false,
+							"left": 1296,
+							"top": 1048,
+							"width": 144,
+							"height": 64,
+							"text": "node.js가 한번 본적 있으니까 서버로서 활용하는게 낫지 않을까?"
+						},
+						{
+							"_type": "UMLNoteLinkView",
+							"_id": "AAAAAAGbKfE/jf+IiYE=",
+							"_parent": {
+								"$ref": "AAAAAAGbJpWBlMC4/qs="
+							},
+							"font": "Arial;13;0",
+							"parentStyle": false,
+							"head": {
+								"$ref": "AAAAAAGbKfC0uv9rvKE="
+							},
+							"tail": {
+								"$ref": "AAAAAAGbKfDe9P9+riI="
+							},
+							"lineStyle": 1,
+							"points": "1363:1047;1359:1018"
 						}
 					]
 				},
@@ -1197,6 +1376,58 @@
 							}
 						}
 					]
+				},
+				{
+					"_type": "MMNode",
+					"_id": "AAAAAAGbKfBm9P9XKM8=",
+					"_parent": {
+						"$ref": "AAAAAAGbJpWBlMC3G38="
+					},
+					"name": "mysql",
+					"ownedElements": [
+						{
+							"_type": "MMEdge",
+							"_id": "AAAAAAGbKfDMRf90lxQ=",
+							"_parent": {
+								"$ref": "AAAAAAGbKfBm9P9XKM8="
+							},
+							"source": {
+								"$ref": "AAAAAAGbKfBm9P9XKM8="
+							},
+							"target": {
+								"$ref": "AAAAAAGbKfB5Pv9gnN4="
+							}
+						},
+						{
+							"_type": "MMEdge",
+							"_id": "AAAAAAGbKfDUXP95YHY=",
+							"_parent": {
+								"$ref": "AAAAAAGbKfBm9P9XKM8="
+							},
+							"source": {
+								"$ref": "AAAAAAGbKfBm9P9XKM8="
+							},
+							"target": {
+								"$ref": "AAAAAAGbKfC0uv9pNkI="
+							}
+						}
+					]
+				},
+				{
+					"_type": "MMNode",
+					"_id": "AAAAAAGbKfB5Pv9gnN4=",
+					"_parent": {
+						"$ref": "AAAAAAGbJpWBlMC3G38="
+					},
+					"name": "apache / xmapp / php"
+				},
+				{
+					"_type": "MMNode",
+					"_id": "AAAAAAGbKfC0uv9pNkI=",
+					"_parent": {
+						"$ref": "AAAAAAGbJpWBlMC3G38="
+					},
+					"name": "node.js"
 				}
 			]
 		},
