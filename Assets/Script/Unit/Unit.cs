@@ -11,8 +11,7 @@ public class Unit : MonoBehaviour
         Attack,
         Die
     }
-    // public Action<string> GetUnitData;
-    // public Action<int> GetSkillData;
+    
     public Database db;
     public State state;
 

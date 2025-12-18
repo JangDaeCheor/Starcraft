@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: mouse
   m_EditorClassIdentifier: 
   right_click_effect: {fileID: 5063914366490314377, guid: 001542f4a139cbf41a9314cb9f7f1a70, type: 3}
+  attack_effect: {fileID: 5414618856235763305, guid: 51698d0bab72f8342b884f20a0318afd, type: 3}
   ground:
     serializedVersion: 2
     m_Bits: 8

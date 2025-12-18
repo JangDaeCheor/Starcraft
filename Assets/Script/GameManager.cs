@@ -9,10 +9,10 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private UIInterface ui;
 
+    // 찾는 것은 Awake에서..
     void Awake()
     {
-        database = GetComponent<Database>();
-        // database = FindFirstObjectByType<Database>(FindObjectsInactive.Exclude);
+        database = FindFirstObjectByType<Database>(FindObjectsInactive.Exclude);
         units = FindObjectsByType<Unit>(FindObjectsSortMode.None);
         ui = FindFirstObjectByType<UIInterface>(FindObjectsInactive.Exclude);
 
