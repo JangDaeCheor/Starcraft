@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
         ui.db = database;
     }
 
+    // 이벤트 연결은 start에서..
     void Start()
     {
         foreach( Unit unit in units)
@@ -36,6 +37,11 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         ui.Tick(Time.deltaTime);
+
+        foreach(Unit unit in units)
+        {
+            unit.Tick(Time.deltaTime);
+        }
     }
 
     void FixedUpdate()

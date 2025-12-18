@@ -25,6 +25,8 @@ public class Unit : MonoBehaviour
 
     [SerializeField]
     private UnitMove unitMove;
+    [SerializeField]
+    private AnimationBridge aniBridge;
 
     [SerializeField]
     private GameObject selectedMark;
@@ -34,6 +36,8 @@ public class Unit : MonoBehaviour
     void Awake()
     {
         unitMove = GetComponent<UnitMove>();
+        aniBridge = GetComponentInChildren<AnimationBridge>();
+
         selectedMark.SetActive(false);
 
         state = State.Idle; // 주의
@@ -59,13 +63,24 @@ public class Unit : MonoBehaviour
         }
     }
 
+    void ChangeState(State newState)
+    {
+        state = newState;
+        aniBridge.SetAnimation();
+    }
+
     public void MoveTo(Vector3 target)
     {
+        if (isSelected == false)
+        {
+            return;
+        }
+
         unitMove.SetTarget(target);
 
         if (state == State.Idle) // 주의 추가될 경우 있음.
         {
-            state = State.Run;
+            ChangeState(State.Run);
         }
     }
 
@@ -80,9 +95,14 @@ public class Unit : MonoBehaviour
         {
             if (unitMove.move == false)
             {
-                state = State.Idle;
+                ChangeState(State.Idle);
             }
         }
+    }
+
+    public void Tick(float deltaTime)
+    {
+        aniBridge.Tick(deltaTime);
     }
 
     public void CheckSelect(Vector2 startPos, Vector2 endPos)

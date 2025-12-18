@@ -993,7 +993,7 @@
 									"font": "Arial;13;0",
 									"parentStyle": true,
 									"left": 1320,
-									"top": 896,
+									"top": 903,
 									"width": 75.96630859375,
 									"height": 26,
 									"text": "apache / xmapp / php",
@@ -1005,7 +1005,7 @@
 							"left": 1320,
 							"top": 888,
 							"width": 75.96630859375,
-							"height": 38,
+							"height": 51,
 							"nameLabel": {
 								"$ref": "AAAAAAGbKfB5Pv9jlgs="
 							}
@@ -1064,7 +1064,7 @@
 								"$ref": "AAAAAAGbKfBm9f9Z1e4="
 							},
 							"lineStyle": 1,
-							"points": "1251:943;1319:920"
+							"points": "1253:944;1319:924"
 						},
 						{
 							"_type": "MMEdgeView",
