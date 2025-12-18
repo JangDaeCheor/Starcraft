@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d487227c3c3c554598c8a30cb81a3f8, type: 3}
   m_Name: mouse
   m_EditorClassIdentifier: 
-  right_click_effect: {fileID: 7829290605378742640, guid: a7dfb6bea49c5b14eb24d5d76d515acb, type: 3}
+  right_click_effect: {fileID: 5063914366490314377, guid: 001542f4a139cbf41a9314cb9f7f1a70, type: 3}
   ground:
     serializedVersion: 2
     m_Bits: 8
+  left_mark_time: 1

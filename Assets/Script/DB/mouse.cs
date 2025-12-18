@@ -5,4 +5,5 @@ public class mouse : ScriptableObject
 {
     public GameObject right_click_effect;
     public LayerMask ground;
+    public float left_mark_time;
 }

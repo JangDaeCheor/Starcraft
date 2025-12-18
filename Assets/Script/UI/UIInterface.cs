@@ -35,6 +35,7 @@ public class UIInterface : MonoBehaviour
 
                 GameObject go = Instantiate(
                     mouseData.right_click_effect, hit.point + (Vector3.up * 0.1f), mouseData.right_click_effect.transform.rotation);
+                Destroy(go, mouseData.left_mark_time);
             }
         }
     }
