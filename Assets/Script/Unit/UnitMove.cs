@@ -16,27 +16,36 @@ public class UnitMove : MonoBehaviour
     private float gravity = -9.81f;
     private float verticalVelocity = 0.0f;
 
-    private bool clicked = false;
     private Vector3 target;
+    public bool move;
 
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+        move = false;
     }
 
-    private bool IsReached(Vector3 worldPos)
+    public void SetTarget(Vector3 p_target)
     {
-        float dist = Vector3.Distance(transform.position, worldPos);
+        target = ClampToAllowed(p_target);
+        move = true;
+    }
+
+    private bool IsReached()
+    {
+        float dist = Vector3.Distance(transform.position, target);
+
         if (dist <= reachThreshold)
         {
             return true;
         }
+
         return false;
     }
 
-    private void FaceTarget(Vector3 worldPos, float deltaTime)
+    private void FaceTarget(float deltaTime)
     {
-        Vector3 to = worldPos - transform.position;
+        Vector3 to = target - transform.position;
         to.y = 0.0f;
 
         if (to.sqrMagnitude <= 0.0001f)
@@ -50,23 +59,26 @@ public class UnitMove : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, t);
     }
 
-    private void MoveTo(Vector3 worldPos, float deltaTime)
-    {        if (agent == null)
+    // Tick에서 사용해야하나?
+    private void MoveTo(float deltaTime)
+    {
+        if (agent == null)
         {
             return;
         }
 
-        Vector3 clamped = ClampToAllowed(worldPos, transform.position);
-        agent.isStopped = false;
-
-        if (IsReached(clamped))
+        if (IsReached())
         {
-            FaceTarget(clamped, deltaTime);
+            agent.isStopped = true;
+            move = false;
+            // FaceTarget(deltaTime);
             return;
         }
         else
         {
-            agent.SetDestination(clamped);
+            Debug.DrawRay(transform.position, target, Color.red);
+            agent.SetDestination(target);
+            agent.isStopped = false;
         }
     }
 
@@ -78,7 +90,8 @@ public class UnitMove : MonoBehaviour
         }
     }
 
-    public Vector3 ClampToAllowed(Vector3 desired, Vector3 from)
+    // 목적지를 NavMesh에 스냅하고, 금지 영역이면 경계선으로 끌어당겨 반환한다.
+    public Vector3 ClampToAllowed(Vector3 desired)
     {
         // 1) NavMesh 스냅
         NavMeshHit hit;
@@ -95,37 +108,13 @@ public class UnitMove : MonoBehaviour
         return nav;
     }
 
-    public void Tick(float deltaTime)
-    {
-        if (agent == null)
-        {
-            Debug.LogWarning("controller null");
-        }
-
-        if (Mouse.current.rightButton.isPressed)
-        {
-            Ray ray = Camera.main.ScreenPointToRay(
-                new Vector3(endPos.x, endPos.y, 0));
-            RaycastHit hit;
-
-            bool blocked = Physics.Raycast(ray, out hit, 100, mouse.ground);
-
-            if (blocked)
-            {
-                GameObject go = Instantiate(
-                    mouse.right_click_effect, hit.point + (Vector3.up * 0.1f), mouse.right_click_effect.transform.rotation);
-            }
-
-            clicked = true;
-        }
-    }
-
     public void FixedTick(float deltaTime)
     {
-        if (clicked)
+        if (move)
         {
-            Vector3  = Camera.main.ScreenToWorldPoint(Mouse.current.position.value);
+            MoveTo(deltaTime);
         }
+
         // if (clicked)
         // {
         //     Vector2 mouse = Camera.main.ScreenToWorldPoint(Mouse.current.position.value);

@@ -4,9 +4,17 @@ using UnityEngine.InputSystem;
 
 public class Unit : MonoBehaviour
 {
+    public enum State
+    {
+        Idle,
+        Run,
+        Attack,
+        Die
+    }
     // public Action<string> GetUnitData;
     // public Action<int> GetSkillData;
     public Database db;
+    public State state;
 
     [SerializeField]
     private string unitName;
@@ -14,10 +22,6 @@ public class Unit : MonoBehaviour
     private unit unit;
     [SerializeField]
     private skill skill;
-
-    // 임시
-    [SerializeField]
-    private mouse mouse;
 
     [SerializeField]
     private UnitMove unitMove;
@@ -31,16 +35,16 @@ public class Unit : MonoBehaviour
     {
         unitMove = GetComponent<UnitMove>();
         selectedMark.SetActive(false);
+
+        state = State.Idle; // 주의
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         if (db != null)
         {
             unit = db.SelectUnitName(unitName);
             skill = db.SelectSkillId(unit.skill_id);
-            mouse = db.mouseDB;
         } else
         {
             Debug.LogError("not database!!");
@@ -55,48 +59,50 @@ public class Unit : MonoBehaviour
         }
     }
 
+    public void MoveTo(Vector3 target)
+    {
+        unitMove.SetTarget(target);
+
+        if (state == State.Idle) // 주의 추가될 경우 있음.
+        {
+            state = State.Run;
+        }
+    }
+
     public void FixedTick(float deltaTime)
     {
         if (isSelected)
         {
             unitMove.FixedTick(deltaTime);
         }
+
+        if (state == State.Run)
+        {
+            if (unitMove.move == false)
+            {
+                state = State.Idle;
+            }
+        }
     }
 
-    // utill로 옮겨야 할까?
     public void CheckSelect(Vector2 startPos, Vector2 endPos)
     {
-        // Ray ray = Camera.main.ScreenPointToRay(
-        //     new Vector3(endPos.x, endPos.y, 0));
-        // RaycastHit hit;
-
-        // Debug.DrawRay(ray.origin, ray.direction * 100, Color.red);
-
-        // bool blocked = Physics.Raycast(ray, out hit, 100, mouse.ground);
-
-        // if (blocked)
-        // {
-        //     GameObject go = Instantiate(
-        //         mouse.right_click_effect, hit.point + (Vector3.up * 0.1f), mouse.right_click_effect.transform.rotation);
-        // }
-
         Vector2 min = Vector2.Min(startPos, endPos);
         Vector2 max = Vector2.Max(startPos, endPos);
         Rect selectionRect = Rect.MinMaxRect(min.x, min.y, max.x, max.y);
 
         Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
         
-        // GameObject go = Instantiate(
-        //     mouse.right_click_effect, screenPos, Quaternion.identity);
-
         if (screenPos.z < 0) Debug.LogError("camera back!!");
 
         if (selectionRect.Contains(screenPos))
         {
-            Debug.Log("select!!");
+            isSelected = true;
+            // Debug.Log("select!!");
             selectedMark.SetActive(true);
         } else
         {
+            isSelected = false;
             selectedMark.SetActive(false);
         }
     }

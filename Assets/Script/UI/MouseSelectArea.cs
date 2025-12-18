@@ -20,7 +20,7 @@ public class MouseSelectArea : MonoBehaviour
         // selectArea.gameObject.SetActive(false);
     }
 
-    void Tick(float deltaTime)
+    public void Tick(float deltaTime)
     {
         // Debug.Log(Mouse.current.position.value);
         if (Mouse.current.leftButton.wasPressedThisFrame)

@@ -202,7 +202,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   database: {fileID: 0}
   units: []
-  selectArea: {fileID: 257678347}
+  ui: {fileID: 0}
 --- !u!1 &221924221
 GameObject:
   m_ObjectHideFlags: 0
@@ -255,6 +255,7 @@ MonoBehaviour:
   agent: {fileID: 0}
   speed: 1
   reachThreshold: 0.5
+  move: 0
 --- !u!114 &221924225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -268,10 +269,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   db: {fileID: 0}
+  state: 0
   unitName: Marine
   unit: {fileID: 0}
   skill: {fileID: 0}
-  mouse: {fileID: 0}
   unitMove: {fileID: 0}
   selectedMark: {fileID: 1139457701}
   isSelected: 0
