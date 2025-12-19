@@ -10,7 +10,7 @@ public class MouseSelectArea : MonoBehaviour
     private Vector2 startPos;
     private Vector2 endPos;
 
-    public event Action<Vector2, Vector2> select;
+    public event Action<Vector2, Vector2> eSelect;
 
     void Awake()
     {
@@ -49,7 +49,7 @@ public class MouseSelectArea : MonoBehaviour
         {
             // Debug.Log("mouse up");
             image.enabled = false;
-            select?.Invoke(startPos, endPos);
+            eSelect?.Invoke(startPos, endPos);
         }
     }
 

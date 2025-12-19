@@ -9,6 +9,11 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private UIInterface ui;
 
+    void Test()
+    {
+        Debug.Log("test");
+    }
+
     // 찾는 것은 Awake에서..
     void Awake()
     {
@@ -16,21 +21,22 @@ public class GameManager : MonoBehaviour
         units = FindObjectsByType<Unit>(FindObjectsSortMode.None);
         ui = FindFirstObjectByType<UIInterface>(FindObjectsInactive.Exclude);
 
+        ui.db = database;
+
         foreach (Unit unit in units)
         {
             unit.db = database;
         }
-
-        ui.db = database;
     }
 
     // 이벤트 연결은 start에서..
     void Start()
     {
+        ui.eAttack += Test;
         foreach( Unit unit in units)
         {
-            ui.select += unit.CheckSelect;
-            ui.mapClick += unit.MoveTo;
+            ui.eSelect += unit.CheckSelect;
+            ui.eMapClick += unit.MoveTo;
         }
     }
 

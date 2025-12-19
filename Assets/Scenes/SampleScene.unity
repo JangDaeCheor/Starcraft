@@ -645,8 +645,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   db: {fileID: 0}
-  selectArea: {fileID: 0}
   mouseData: {fileID: 0}
+  selectArea: {fileID: 0}
+  commandPanel: {fileID: 0}
 --- !u!1 &653322385
 GameObject:
   m_ObjectHideFlags: 0
@@ -879,6 +880,7 @@ GameObject:
   - component: {fileID: 1098363290}
   - component: {fileID: 1098363292}
   - component: {fileID: 1098363291}
+  - component: {fileID: 1098363293}
   m_Layer: 5
   m_Name: CommandPanel
   m_TagString: Untagged
@@ -946,6 +948,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1098363289}
   m_CullTransparentMesh: 1
+--- !u!114 &1098363293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1098363289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6235f9dda6022b479322d85adfe0f33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  btnAttack: {fileID: 0}
 --- !u!1 &1185291153
 GameObject:
   m_ObjectHideFlags: 0
@@ -1027,7 +1042,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1185291156}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1098363293}
+        m_TargetAssemblyTypeName: CommandPanel, Assembly-CSharp
+        m_MethodName: OnTestClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1185291156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1079,7 +1106,7 @@ GameObject:
   - component: {fileID: 1291534979}
   - component: {fileID: 1291534978}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: ButtonTest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
