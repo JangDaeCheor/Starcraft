@@ -1,3 +1,4 @@
+using System.Data.Common;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -5,56 +6,42 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Database database;
     [SerializeField]
-    private Unit[] units;
+    private UnitManager unitManager;
     [SerializeField]
     private UIInterface ui;
 
-    void Test()
-    {
-        Debug.Log("test");
-    }
-
-    // 찾는 것은 Awake에서..
     void Awake()
     {
         database = FindFirstObjectByType<Database>(FindObjectsInactive.Exclude);
-        units = FindObjectsByType<Unit>(FindObjectsSortMode.None);
         ui = FindFirstObjectByType<UIInterface>(FindObjectsInactive.Exclude);
+        unitManager = FindFirstObjectByType<UnitManager>(FindObjectsInactive.Exclude);
 
-        ui.db = database;
+        database.eSetData += unitManager.SetData;
+        database.eSetData += ui.SetData;
 
-        foreach (Unit unit in units)
-        {
-            unit.db = database;
-        }
+        unitManager.eGetData += database.SetData;
+        ui.eGetData += database.SetData;
+
+        database.eChangeData += unitManager.ChangeData;
+        database.eChangeData += ui.SetData;
+
+        ui.eWorldClick += unitManager.MoveCommand;
+        ui.eSelect += unitManager.CheckSelect;
     }
 
-    // 이벤트 연결은 start에서..
     void Start()
     {
-        ui.eAttack += Test;
-        foreach( Unit unit in units)
-        {
-            ui.eSelect += unit.CheckSelect;
-            ui.eMapClick += unit.MoveTo;
-        }
+        database.SetData();
     }
 
     void Update()
     {
-        ui.Tick(Time.deltaTime);
-
-        foreach(Unit unit in units)
-        {
-            unit.Tick(Time.deltaTime);
-        }
+        ui.fsm.Tick(Time.deltaTime);
+        unitManager.Tick(Time.deltaTime);
     }
 
     void FixedUpdate()
     {
-        foreach(Unit unit in units)
-        {
-            unit.FixedTick(Time.fixedDeltaTime);
-        }
+        unitManager.FixedTick(Time.deltaTime);
     }
 }

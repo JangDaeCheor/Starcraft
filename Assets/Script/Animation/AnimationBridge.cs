@@ -6,54 +6,29 @@ public class AnimationBridge : MonoBehaviour
 {
     [SerializeField]
     private Animator animator;
-    [SerializeField]
-    private Unit unit;
 
-    [SerializeField]
-    public event Action attackMotionFinish;
-    private bool attack;
-
-    /// <summary>
-    /// IsMove : Bool, Attack : Trigger, AttackMotionTime : Float
-    /// </summary>
-    public void SetAnimation()
+    public void SetMove(bool move)
     {
-        if (unit.state == Unit.State.Idle)
-        {
-            animator.SetBool("IsMove", false); // 파라미터 이름이 달라도 error 없음.
-            animator.ResetTrigger("Attack");
-        } else if (unit.state == Unit.State.Run)
-        {
-            animator.SetBool("IsMove", true);
-        } else if (unit.state == Unit.State.Attack)
-        {
-            attack = true;
-            animator.SetTrigger("Attack");
-        }
+        animator.SetBool("IsMove", move);
     }
 
-    public void Tick(float deltaTime)
+    public void SetAttackTrigger()
     {
-        // animator.Get은 parameter가 없을 경우 warning
-        if (animator.GetFloat("AttackMotionTime") > 0.9)
-        {
-            if (attack)
-            {
-                attackMotionFinish?.Invoke();
-                attack = false;
-            }
-        }
+        animator.SetTrigger("Attack");
+    }
+
+    public void ResetAttackTrigger()
+    {
+        animator.ResetTrigger("Attack");
+    }
+
+    public float GetAttackMotionTime()
+    {
+        return animator.GetFloat("AttackMotionTime");
     }
 
     void Awake()
     {
-        animator = GetComponent<Animator>();
-        unit = GetComponentInParent<Unit>();
-    }
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        SetAnimation();
+        animator = GetComponentInChildren<Animator>();
     }
 }

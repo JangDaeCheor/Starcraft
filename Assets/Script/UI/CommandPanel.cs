@@ -7,7 +7,7 @@ public class CommandPanel : MonoBehaviour
     [SerializeField]
     private Button btnAttack;
 
-    public event Action eAttack;
+    public event Action eAttackCommand;
 
     public void OnTestClick()
     {
@@ -24,17 +24,7 @@ public class CommandPanel : MonoBehaviour
                 btnAttack = button;
             }
         }
-    }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        btnAttack.onClick.AddListener(()=>eAttack?.Invoke());
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        btnAttack.onClick.AddListener(()=>eAttackCommand?.Invoke());
     }
 }

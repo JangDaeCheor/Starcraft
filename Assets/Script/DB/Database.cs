@@ -10,6 +10,14 @@ public class Database : MonoBehaviour
     [SerializeField]
     public mouse mouseDB;
 
+    public event Action<Database> eSetData;
+    public event Action<Database> eChangeData;
+
+    public void SetData()
+    {
+        eSetData?.Invoke(this);
+    }
+
     public unit SelectUnitName(string name)
     {
         foreach(unit unit in unitDB)
@@ -56,17 +64,5 @@ public class Database : MonoBehaviour
             }
         }
         return null;
-    }
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

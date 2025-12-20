@@ -55,7 +55,7 @@ public class Unit : MonoBehaviour
 
         if (unitMove != null)
         {
-            unitMove.speed = unit.move_speed;
+            // unitMove.speed = unit.move_speed;
         } else
         {
             Debug.LogWarning("not unit move!!");
@@ -65,7 +65,7 @@ public class Unit : MonoBehaviour
     void ChangeState(State newState)
     {
         state = newState;
-        aniBridge.SetAnimation();
+        // aniBridge.SetAnimation();
     }
 
     public void MoveTo(Vector3 target)
@@ -101,7 +101,7 @@ public class Unit : MonoBehaviour
 
     public void Tick(float deltaTime)
     {
-        aniBridge.Tick(deltaTime);
+        // aniBridge.Tick(deltaTime);
     }
 
     public void CheckSelect(Vector2 startPos, Vector2 endPos)

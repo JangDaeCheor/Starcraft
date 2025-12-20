@@ -16,7 +16,7 @@ public class UnitMove : MonoBehaviour
     private float gravity = -9.81f;
     private float verticalVelocity = 0.0f;
 
-    private Vector3 target;
+    private Vector3 _target;
     public bool move;
 
     void Awake()
@@ -25,15 +25,15 @@ public class UnitMove : MonoBehaviour
         move = false;
     }
 
-    public void SetTarget(Vector3 p_target)
+    public void SetTarget(Vector3 target)
     {
-        target = ClampToAllowed(p_target);
+        _target = ClampToAllowed(target);
         move = true;
     }
 
     private bool IsReached()
     {
-        float dist = Vector3.Distance(transform.position, target);
+        float dist = Vector3.Distance(transform.position, _target);
 
         if (dist <= reachThreshold)
         {
@@ -45,7 +45,7 @@ public class UnitMove : MonoBehaviour
 
     private void FaceTarget(float deltaTime)
     {
-        Vector3 to = target - transform.position;
+        Vector3 to = _target - transform.position;
         to.y = 0.0f;
 
         if (to.sqrMagnitude <= 0.0001f)
@@ -76,13 +76,13 @@ public class UnitMove : MonoBehaviour
         }
         else
         {
-            Debug.DrawRay(transform.position, target, Color.red);
-            agent.SetDestination(target);
+            Debug.DrawRay(transform.position, _target, Color.red);
+            agent.SetDestination(_target);
             agent.isStopped = false;
         }
     }
 
-    private void Stop()
+    public void Stop()
     {
         if (agent != null)
         {
