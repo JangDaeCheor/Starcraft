@@ -16,9 +16,15 @@ public class UnitStateMachine : MonoBehaviour
     public string unitName;
     [SerializeField]
     private GameObject _seletedMark; // 여기서 지정.
+    [SerializeField]
+    private State state;
 
     private UnitContext context;
-    private IUnitBaseState currentState;
+    private UnitBaseState currentState;
+
+    public event Action<float> attack;
+
+    public UnitContext GetContext() {return context;}
 
     public void MoveCommand(Vector3 target)
     {
@@ -27,6 +33,23 @@ public class UnitStateMachine : MonoBehaviour
             context.moveTarget = target;
             ChangeState(new UnitMoveState());
         }
+    }
+    public void AttackCommand(Vector3 target)
+    {
+        if (context.GetSeleted())
+        {
+            context.moveTarget = target;
+            ChangeState(new UnitAttackState());
+        }
+    }
+
+    public void Attack(float damage)
+    {
+        attack?.Invoke(damage);
+    }
+    public void HitDamage(float damage)
+    {
+        context.GetHealth().HitDamage(damage);
     }
 
     public void SetData(Database db)
@@ -58,11 +81,11 @@ public class UnitStateMachine : MonoBehaviour
     {
         if (currentState != null)
         {
-            currentState.FixedTick(context, deltaTime);
+            currentState.FixedTick(context, this, deltaTime);
         }
     }
 
-    public void ChangeState(IUnitBaseState next)
+    public void ChangeState(UnitBaseState next)
     {
         if (context == null)
         {
@@ -78,6 +101,7 @@ public class UnitStateMachine : MonoBehaviour
         if (currentState != null)
         {
             currentState.Enter(context);
+            state = currentState.state;
         }
     }
 }

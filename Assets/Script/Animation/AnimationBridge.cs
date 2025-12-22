@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 
 public class AnimationBridge : MonoBehaviour
@@ -24,7 +25,12 @@ public class AnimationBridge : MonoBehaviour
 
     public float GetAttackMotionTime()
     {
-        return animator.GetFloat("AttackMotionTime");
+        AnimatorStateInfo info = animator.GetCurrentAnimatorStateInfo(0);
+        if (info.IsName("attack"))
+        {
+            return info.normalizedTime;
+        }
+        return -1;
     }
 
     void Awake()

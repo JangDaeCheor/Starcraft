@@ -1,25 +1,23 @@
 using UnityEngine;
 
-public class UnitIdleState : IUnitBaseState
+public class UnitIdleState : UnitBaseState
 {
-    public UnitStateMachine.State state = UnitStateMachine.State.Idle;
+    public override void Enter(UnitContext context)
+    {
+        state = UnitStateMachine.State.Idle;
+    }
 
-    public virtual void Enter(UnitContext context)
+    public override void Tick(UnitContext context, UnitStateMachine fsm, float deltaTime)
     {
         
     }
 
-    public virtual void Tick(UnitContext context, UnitStateMachine fsm, float deltaTime)
+    public override void FixedTick(UnitContext context, UnitStateMachine fsm, float deltaTime)
     {
         
     }
 
-    public virtual void FixedTick(UnitContext context, float deltaTime)
-    {
-        
-    }
-
-    public virtual void Exit(UnitContext context)
+    public override void Exit(UnitContext context)
     {
         
     }

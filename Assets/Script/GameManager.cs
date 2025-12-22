@@ -27,6 +27,10 @@ public class GameManager : MonoBehaviour
 
         ui.eWorldClick += unitManager.MoveCommand;
         ui.eSelect += unitManager.CheckSelect;
+
+        ui.eAttack += unitManager.AttackCommand;
+
+        unitManager.eSelectedUnits += ui.SelectedEvent;
     }
 
     void Start()

@@ -15,6 +15,7 @@ public class UIInterface : MonoBehaviour
 
     public void WorldClickEvent(Vector3 target) {eWorldClick?.Invoke(target);}
     public void SelectEvent(Vector2 start, Vector2 end) {eSelect?.Invoke(start, end);}
+    public void SelectedEvent(UnitContext[] selectedUnits) {fsm.SetSelectedUnits(selectedUnits);}
     public void AttackEvent(Vector3 target) {eAttack?.Invoke(target);}
 
     void Awake()

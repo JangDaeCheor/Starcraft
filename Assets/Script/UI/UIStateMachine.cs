@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class UIStateMachine : MonoBehaviour
@@ -12,15 +14,20 @@ public class UIStateMachine : MonoBehaviour
     
     private UIContext context;
     private UIBaseState currentState;
+    private List<UnitContext> selectedUnits;
 
     public void SetContext(Database db)
     {
         context.SetMouseData(db.mouseDB);
     }
 
+    public void SetSelectedUnits(UnitContext[] units)
+    {
+        selectedUnits.AddRange(units);
+    }
+
     private void SetCursor()
     {
-        Debug.Log("Set cursor");
         switch(currentState.state)
         {
             case State.Idle:
@@ -62,8 +69,8 @@ public class UIStateMachine : MonoBehaviour
         currentState = next;
         if (currentState != null)
         {
-            SetCursor();
             currentState.Enter(context);
+            SetCursor();
         }
     }
 }

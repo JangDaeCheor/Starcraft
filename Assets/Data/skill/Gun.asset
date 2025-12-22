@@ -15,3 +15,6 @@ MonoBehaviour:
   id: 0
   skill_name: Gun
   damage: 5
+  cooltime: 10
+  attack_distance: 2
+  effect: {fileID: 4021103657954561961, guid: 2cd9d14801cf5a84d94415c0d0f957b6, type: 3}

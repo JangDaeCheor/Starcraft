@@ -15,5 +15,6 @@ MonoBehaviour:
   id: 0
   unit_name: Human
   hp: 10
+  current_hp: 10
   skill_id: -1
   move_speed: 1

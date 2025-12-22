@@ -1,34 +1,43 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class UnitMoveState : IUnitBaseState
+public class UnitMoveState : UnitBaseState
 {
-    public UnitStateMachine.State state = UnitStateMachine.State.Move;
+    private NavMeshAgent agent;
 
-    public virtual void Enter(UnitContext context)
+    public override void Enter(UnitContext context)
     {
+        state = UnitStateMachine.State.Move;
+
+        agent = context.GetNavMeshAgent();
+
         context.GetAnimationBridge().SetMove(true);
+        agent.isStopped = false;
     }
 
-    public virtual void Tick(UnitContext context, UnitStateMachine fsm, float deltaTime)
+    public override void Tick(UnitContext context, UnitStateMachine fsm, float deltaTime)
     {
-        NavMeshAgent agent = context.GetNavMeshAgent();
         if (agent == null)
         {
             Debug.LogError("not agent!!");
             fsm.ChangeState(new UnitIdleState());
             return;
         }
+
+        if (agent.isStopped)
+        {
+            fsm.ChangeState(new UnitIdleState());
+        }
     }
 
-    public virtual void FixedTick(UnitContext context, float deltaTime)
+    public override void FixedTick(UnitContext context, UnitStateMachine fsm, float deltaTime)
     {
-        NavMeshAgent agent = context.GetNavMeshAgent();
         if (agent == null)
         {
             return;
         }
 
+        // 꼭 여기서 거리를 판단해야 하나? Update쪽이 낫지 않을까?
         float dist = Vector3.Distance(context.GetTransform().position, context.moveTarget);
         if (dist <= context.reachThreshold)
         {
@@ -37,11 +46,10 @@ public class UnitMoveState : IUnitBaseState
         {
             Debug.DrawRay(context.GetTransform().position, context.moveTarget, Color.red);
             agent.SetDestination(context.moveTarget);
-            agent.isStopped = false;
         }        
     }
 
-    public virtual void Exit(UnitContext context)
+    public override void Exit(UnitContext context)
     {
         context.GetAnimationBridge().SetMove(false);
     }

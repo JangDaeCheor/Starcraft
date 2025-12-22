@@ -17,3 +17,4 @@ MonoBehaviour:
   hp: 10
   skill_id: 0
   move_speed: 1
+  view_distance: 10

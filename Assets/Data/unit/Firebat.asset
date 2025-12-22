@@ -15,5 +15,6 @@ MonoBehaviour:
   id: 2
   unit_name: Firebat
   hp: 20
+  current_hp: 20
   skill_id: 1
   move_speed: 1

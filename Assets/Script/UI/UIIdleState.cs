@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,6 +7,11 @@ public class UIIdleState : UIBaseState
     private bool attack = false;
 
     private void CheckAttack() {attack = true;}
+
+    private void CreateWorldClickEffect()
+    {
+       // Destroy를 행동이 끝났을 때... 
+    }
 
     public override void Enter(UIContext context)
     {
@@ -20,11 +26,15 @@ public class UIIdleState : UIBaseState
         if (Mouse.current.rightButton.wasPressedThisFrame)
         {
             // UI를 클릭한 것이 아닌 World를 클릭한 것을 체크 후.. 
-            context.GetInterface().WorldClickEvent(context.MouseToWorldPosition());
+            Vector3 target = context.MouseToWorldPosition();
+            context.GetInterface().WorldClickEvent(target);
+            GameObject go = Object.Instantiate(
+                context.GetMouseData().right_click_effect, target + (Vector3.up * 0.1f), context.GetMouseData().right_click_effect.transform.rotation);
+            Object.Destroy(go, 3.0f); // 나중에 행동이 끝났을 때 없어지는 것으로 변경..
         }
         context.GetSelectArea().Tick(deltaTime);
 
-        if (attack || Keyboard.current.aKey.isPressed)
+        if (attack || Keyboard.current.aKey.isPressed) // 유닛이 선택되어있는 상태..
         {
             fsm.ChangeState(new UIAttackState());
         }
