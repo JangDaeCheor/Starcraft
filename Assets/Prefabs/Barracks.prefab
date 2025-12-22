@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 6689035698235060044}
   - component: {fileID: 6537632300366103646}
   - component: {fileID: 759991461522512231}
-  m_Layer: 0
+  - component: {fileID: 272287098257704102}
+  m_Layer: 6
   m_Name: Barracks
-  m_TagString: Untagged
+  m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -108,3 +109,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &272287098257704102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6283729503565996281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca063f32a15141643aaeb4a87abf42b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildingName: Barracks
+  spawnPosOffset: 3
+  spawnRoundCount: 5

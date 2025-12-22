@@ -16,7 +16,10 @@ MonoBehaviour:
   attack_effect: {fileID: 5414618856235763305, guid: 51698d0bab72f8342b884f20a0318afd, type: 3}
   attack_cursor: {fileID: 2800000, guid: ce683041f000c7c48b73e8fbda566384, type: 3}
   idle_cursor: {fileID: 2800000, guid: f8d327f88e3408f42b3dc6850224b676, type: 3}
-  ground:
+  ground_layer:
     serializedVersion: 2
     m_Bits: 8
+  object_layer:
+    serializedVersion: 2
+    m_Bits: 192
   left_mark_time: 1

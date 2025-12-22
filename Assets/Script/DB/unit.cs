@@ -10,4 +10,6 @@ public class unit : ScriptableObject
     public int skill_id;
     public float move_speed = 1;
     public float view_distance = 10.0f;
+    public GameObject unit_prefab;
+    public Texture2D unit_image;
 }

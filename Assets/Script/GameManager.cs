@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private UIInterface ui;
 
+    [SerializeField]
+    private Building _building;
+
     void Awake()
     {
         database = FindFirstObjectByType<Database>(FindObjectsInactive.Exclude);
@@ -25,12 +28,22 @@ public class GameManager : MonoBehaviour
         database.eChangeData += unitManager.ChangeData;
         database.eChangeData += ui.SetData;
 
-        ui.eWorldClick += unitManager.MoveCommand;
+        ui.eWorldRightClick += unitManager.MoveCommand;
         ui.eSelect += unitManager.CheckSelect;
 
         ui.eAttack += unitManager.AttackCommand;
 
-        unitManager.eSelectedUnits += ui.SelectedEvent;
+        unitManager.eSelectedUnits += ui.SelectedUnitEvent;
+        _building.eBuildingCommand += ui.SelectedBuildingEvent;
+
+
+        // 임시
+        ui.eSpawnUnit += _building.SpawnUnit;
+        ui.eWorldLeftClick += _building.CheckId;
+
+        database.eSetData += _building.SetData;
+
+        _building.eSpawnUnit += unitManager.SpawnUnit;
     }
 
     void Start()

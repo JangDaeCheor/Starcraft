@@ -18,3 +18,5 @@ MonoBehaviour:
   skill_id: 0
   move_speed: 1
   view_distance: 10
+  unit_prefab: {fileID: 981310066394583166, guid: 8ab47b75c97c30841a8ef5ede2a9bd0e, type: 3}
+  unit_image: {fileID: 2800000, guid: 0c2ead94268f6744bb8378daf2da19a3, type: 3}

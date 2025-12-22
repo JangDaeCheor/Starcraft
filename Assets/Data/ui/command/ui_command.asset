@@ -9,13 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff455d881913553479d2a74498a0ea91, type: 3}
-  m_Name: Gun
+  m_Script: {fileID: 11500000, guid: 0eaab513ad1b9b44c94990fa71b21982, type: 3}
+  m_Name: ui_command
   m_EditorClassIdentifier: 
-  id: 0
-  skill_name: Gun
-  damage: 1
-  cooltime: 5
-  attack_distance: 5
-  effect: {fileID: 4021103657954561961, guid: 2cd9d14801cf5a84d94415c0d0f957b6, type: 3}
-  skill_image: {fileID: 0}
+  basic: {fileID: 10904, guid: 0000000000000000f000000000000000, type: 0}
+  attack: {fileID: 2800000, guid: b31dedd2e9bc67e47a9a6a83d1e9bd68, type: 3}

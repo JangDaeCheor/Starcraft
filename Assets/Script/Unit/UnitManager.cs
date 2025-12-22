@@ -15,6 +15,17 @@ public class UnitManager : MonoBehaviour
     public event Action<Database> eSetData;
     public event Action<UnitContext[]> eSelectedUnits;
 
+    public void SpawnUnit(GameObject go)
+    {
+        UnitStateMachine unit = go.GetComponent<UnitStateMachine>();
+        if (unit != null)
+        {
+            eSetData += unit.SetData;
+            eGetData?.Invoke();
+            units.Add(unit);
+        }
+    }
+
     public void SetData(Database db)
     {
         eSetData?.Invoke(db);
@@ -55,6 +66,8 @@ public class UnitManager : MonoBehaviour
                 unit.SetSeleted(false);
             }
         }
+
+        if (selectedUnits.Count > 0) {PublishSelectedUnits();}
     }
 
     public void MoveCommand(Vector3 target)

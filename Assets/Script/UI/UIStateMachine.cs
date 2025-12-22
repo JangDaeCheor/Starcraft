@@ -14,16 +14,25 @@ public class UIStateMachine : MonoBehaviour
     
     private UIContext context;
     private UIBaseState currentState;
-    private List<UnitContext> selectedUnits;
+    private List<UnitContext> selectedUnits = new List<UnitContext>();
 
     public void SetContext(Database db)
     {
         context.SetMouseData(db.mouseDB);
+        context.SetCommandData(db.commandDB);
     }
 
     public void SetSelectedUnits(UnitContext[] units)
     {
+        selectedUnits.Clear();
         selectedUnits.AddRange(units);
+
+        context.GetCommandPanel().SetUnitButtons(units);
+    }
+    public void SetSelectedBuilding(unit[] units, skill[] skills)
+    {
+        selectedUnits.Clear();
+        context.GetCommandPanel().SetBuildingButtons(units, skills);
     }
 
     private void SetCursor()

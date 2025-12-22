@@ -9,13 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff455d881913553479d2a74498a0ea91, type: 3}
-  m_Name: Gun
+  m_Script: {fileID: 11500000, guid: ba5dd27569006ff44a058f0cdefc21b1, type: 3}
+  m_Name: Barracks
   m_EditorClassIdentifier: 
   id: 0
-  skill_name: Gun
-  damage: 1
-  cooltime: 5
-  attack_distance: 5
-  effect: {fileID: 4021103657954561961, guid: 2cd9d14801cf5a84d94415c0d0f957b6, type: 3}
-  skill_image: {fileID: 0}
+  building_name: Barracks
+  hp: 100
+  spawn_unit_id: 0100000002000000
+  upgrade_skill_id: 

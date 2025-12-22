@@ -9,4 +9,5 @@ public class skill : ScriptableObject
     public float cooltime = 1.0f;
     public float attack_distance = 1.0f;
     public GameObject effect;
+    public Texture2D skill_image;
 }

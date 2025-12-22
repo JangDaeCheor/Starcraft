@@ -15,6 +15,8 @@ MonoBehaviour:
   id: 2
   unit_name: Firebat
   hp: 20
-  current_hp: 20
   skill_id: 1
   move_speed: 1
+  view_distance: 10
+  unit_prefab: {fileID: 6798657920928499507, guid: eb748c2c2422823449cfdb82e7560eb6, type: 3}
+  unit_image: {fileID: 2800000, guid: 2595649e4e7fde748ab19e736c6a3254, type: 3}

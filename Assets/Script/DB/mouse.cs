@@ -7,6 +7,7 @@ public class mouse : ScriptableObject
     public GameObject attack_effect;
     public Texture2D attack_cursor;
     public Texture2D idle_cursor;
-    public LayerMask ground;
+    public LayerMask ground_layer;
+    public LayerMask object_layer;
     public float left_mark_time;
 }

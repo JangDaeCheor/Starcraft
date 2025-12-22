@@ -13,7 +13,7 @@ public class UIAttackState : UIBaseState
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
             // UI를 클릭한 것이 아닌 World를 클릭한 것을 체크 후.. 
-            Vector3 target = context.MouseToWorldPosition();
+            Vector3 target = context.MouseToGroundPosition();
             context.GetInterface().AttackEvent(target);
             GameObject go = Object.Instantiate(
                 context.GetMouseData().attack_effect, target + (Vector3.up * 0.1f), context.GetMouseData().attack_effect.transform.rotation);

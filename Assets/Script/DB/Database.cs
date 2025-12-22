@@ -8,7 +8,11 @@ public class Database : MonoBehaviour
     [SerializeField]
     private skill[] skillDB;
     [SerializeField]
+    private building[] buildingDB;
+    [SerializeField]
     public mouse mouseDB;
+    [SerializeField]
+    public ui_command commandDB;
 
     public event Action<Database> eSetData;
     public event Action<Database> eChangeData;
@@ -61,6 +65,30 @@ public class Database : MonoBehaviour
             if (skill.id == id)
             {
                 return skill;
+            }
+        }
+        return null;
+    }
+
+    public building SelectBuildingName(string name)
+    {
+        foreach(building building in buildingDB)
+        {
+            if (building.name == name)
+            {
+                return building;
+            }
+        }
+        return null;
+    }
+
+    public building SelectBuildingId(int id)
+    {
+        foreach(building building in buildingDB)
+        {
+            if (building.id == id)
+            {
+                return building;
             }
         }
         return null;

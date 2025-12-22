@@ -14,4 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 1
   skill_name: Fire
-  damage: 10
+  damage: 2
+  cooltime: 5
+  attack_distance: 2
+  effect: {fileID: 8764043878647920493, guid: f1a6674a0d2fd7848aed434948471ad2, type: 3}
+  skill_image: {fileID: 0}
