@@ -14,12 +14,24 @@ public class Database : MonoBehaviour
     [SerializeField]
     public ui_command commandDB;
 
-    public event Action<Database> eSetData;
-    public event Action<Database> eChangeData;
+    // public event Action<Database> eSetData;
+    public event Action<mSetData> eSetData;
+    public event Action<mChangeData> eChangeData;
 
-    public void SetData()
+    void Awake()
     {
-        eSetData?.Invoke(this);
+        MessageBus.Subscribe<mSetData>(eSetData);
+        MessageBus.Subscribe<mGetData>(SetData);
+        MessageBus.Subscribe<mChangeData>(eChangeData);
+    }
+
+    public void SetData(mGetData getData)
+    {
+        MessageBus.ClearAction<mSetData>(eSetData);
+        MessageBus.Subscribe<mSetData>(eSetData);
+        MessageBus.Subscribe<mSetData>(getData.setData);
+
+        MessageBus.Publish<mSetData>(new mSetData(this));
     }
 
     public unit SelectUnitName(string name)

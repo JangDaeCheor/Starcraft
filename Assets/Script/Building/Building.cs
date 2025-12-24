@@ -57,16 +57,17 @@ public class Building : MonoBehaviour
         }
     }
 
-    public void SetData(Database db)
+    public void SetData(mSetData setData)
     {
-        _buildingData = db.SelectBuildingName(buildingName);
+        // Debug.Log("SetData : " + this.name);
+        _buildingData = setData.db.SelectBuildingName(buildingName);
         foreach (int unitId in _buildingData.spawn_unit_id)
         {
-            _spawnPossibleUnits.Add(db.SelectUnitId(unitId));
+            _spawnPossibleUnits.Add(setData.db.SelectUnitId(unitId));
         }
         foreach (int skillId in _buildingData.upgrade_skill_id)
         {
-            _upgradePossibleSkills.Add(db.SelectSkillId(skillId));
+            _upgradePossibleSkills.Add(setData.db.SelectSkillId(skillId));
         }
     }
 
@@ -87,5 +88,7 @@ public class Building : MonoBehaviour
     void Awake()
     {
         _collider = GetComponent<Collider>();
+
+        MessageBus.Subscribe<mSetData>(SetData);
     }
 }

@@ -1,4 +1,5 @@
 using System.Data.Common;
+using UnityEditor.VersionControl;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -19,15 +20,6 @@ public class GameManager : MonoBehaviour
         ui = FindFirstObjectByType<UIInterface>(FindObjectsInactive.Exclude);
         unitManager = FindFirstObjectByType<UnitManager>(FindObjectsInactive.Exclude);
 
-        database.eSetData += unitManager.SetData;
-        database.eSetData += ui.SetData;
-
-        unitManager.eGetData += database.SetData;
-        ui.eGetData += database.SetData;
-
-        database.eChangeData += unitManager.ChangeData;
-        database.eChangeData += ui.SetData;
-
         ui.eWorldRightClick += unitManager.MoveCommand;
         ui.eSelect += unitManager.CheckSelect;
 
@@ -41,14 +33,12 @@ public class GameManager : MonoBehaviour
         ui.eSpawnUnit += _building.SpawnUnit;
         ui.eWorldLeftClick += _building.CheckId;
 
-        database.eSetData += _building.SetData;
-
         _building.eSpawnUnit += unitManager.SpawnUnit;
     }
 
     void Start()
     {
-        database.SetData();
+        MessageBus.Publish<mSetData>(new mSetData(database));
     }
 
     void Update()

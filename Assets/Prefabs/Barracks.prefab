@@ -121,6 +121,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca063f32a15141643aaeb4a87abf42b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  state: 1
+  id: 0
   buildingName: Barracks
-  spawnPosOffset: 3
+  spawnPosOffset: 1
   spawnRoundCount: 5
+  isSelected: 0

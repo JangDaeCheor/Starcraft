@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
+using UnityEditor.VersionControl;
 using UnityEngine;
 
 public class UnitManager : MonoBehaviour
@@ -11,8 +12,8 @@ public class UnitManager : MonoBehaviour
     [SerializeField]
     private List<UnitStateMachine> selectedUnits;
 
-    public event Action eGetData;
-    public event Action<Database> eSetData;
+    // public event Action eGetData;
+    public event Action<mGetData> eGetData;
     public event Action<UnitContext[]> eSelectedUnits;
 
     public void SpawnUnit(GameObject go)
@@ -20,26 +21,17 @@ public class UnitManager : MonoBehaviour
         UnitStateMachine unit = go.GetComponent<UnitStateMachine>();
         if (unit != null)
         {
-            eSetData += unit.SetData;
-            eGetData?.Invoke();
+            MessageBus.Publish<mGetData>(new mGetData(unit.SetData));
             units.Add(unit);
         }
     }
 
-    public void SetData(Database db)
-    {
-        eSetData?.Invoke(db);
-        eSetData = null;
-    }
-
-    public void ChangeData(Database db)
+    public void ChangeData(mChangeData db)
     {
         foreach (UnitStateMachine unit in units)
         {
-            eSetData += unit.SetData;
+            unit.SetData(db.setData);
         }
-        eSetData?.Invoke(db);
-        eSetData = null;
     }
 
     // 나중에 화면에 있는 유닛만 선택되게 제한할 수 있나?
@@ -101,8 +93,10 @@ public class UnitManager : MonoBehaviour
         units.AddRange(FindObjectsByType<UnitStateMachine>(FindObjectsSortMode.None));
         foreach (UnitStateMachine unit in units)
         {
-            eSetData += unit.SetData;
+            MessageBus.Subscribe<mSetData>(unit.SetData);
         }
+
+        MessageBus.Subscribe<mGetData>(eGetData);
     }
 
     public void Tick(float deltaTime)

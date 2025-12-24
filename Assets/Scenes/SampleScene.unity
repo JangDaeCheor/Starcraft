@@ -1968,6 +1968,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 272287098257704102, guid: 83d9df0db2200cb4f86fd4c3eafe0fdf, type: 3}
+      propertyPath: spawnRoundCount
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6283729503565996281, guid: 83d9df0db2200cb4f86fd4c3eafe0fdf, type: 3}
       propertyPath: m_Name
       value: Barracks

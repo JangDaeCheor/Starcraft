@@ -5,15 +5,16 @@ public class UIInterface : MonoBehaviour
 {
     public UIStateMachine fsm;
 
-    public event Action eGetData;
+    public event Action<mGetData> eGetData;
     
+    public void SetData(mSetData setData) {fsm.SetContext(setData.db);}
+    public void ChangeData(mChangeData changeData) {fsm.SetContext(changeData.setData.db);}
+
     public event Action<Vector3> eWorldRightClick;
     public event Action<GameObject> eWorldLeftClick;
     public event Action<Vector2, Vector2> eSelect;
     public event Action<Vector3> eAttack;
     public event Action<GameObject> eSpawnUnit; 
-
-    public void GetDataEvent() {eGetData?.Invoke();}
 
     public void WorldRightClickEvent(Vector3 target) {eWorldRightClick?.Invoke(target);}
     public void WorldLeftClickEvent(GameObject target) {eWorldLeftClick?.Invoke(target);}
@@ -27,7 +28,9 @@ public class UIInterface : MonoBehaviour
     void Awake()
     {
         fsm = GetComponent<UIStateMachine>();
-    }
 
-    public void SetData(Database db) {fsm.SetContext(db);}
+        MessageBus.Subscribe<mGetData>(eGetData);
+        MessageBus.Subscribe<mSetData>(SetData);
+        MessageBus.Subscribe<mChangeData>(ChangeData);
+    }
 }

@@ -52,10 +52,11 @@ public class UnitStateMachine : MonoBehaviour
         context.GetHealth().HitDamage(damage);
     }
 
-    public void SetData(Database db)
+    public void SetData(mSetData setData)
     {
-        unit unitData = db.SelectUnitName(unitName);
-        skill skillData = db.SelectSkillId(unitData.skill_id);
+        // Debug.Log("SetData : " + this.name);
+        unit unitData = setData.db.SelectUnitName(unitName);
+        skill skillData = setData.db.SelectSkillId(unitData.skill_id);
         context.SetContext(unitData, skillData, _seletedMark);
     }
 
